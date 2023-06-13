@@ -1,0 +1,141 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.google.cloud",
+    "module": "gapic-google-cloud-maps-automotivemaps-v1-java",
+    "version": "0.0.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.6.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.api",
+          "module": "gax",
+          "version": {
+            "requires": "2.23.3"
+          }
+        },
+        {
+          "group": "com.google.api",
+          "module": "gax-grpc",
+          "version": {
+            "requires": "2.23.3"
+          }
+        },
+        {
+          "group": "com.google.api",
+          "module": "gax-httpjson",
+          "version": {
+            "requires": "0.108.3"
+          }
+        },
+        {
+          "group": "io.grpc",
+          "module": "grpc-protobuf",
+          "version": {
+            "requires": "1.53.0"
+          }
+        },
+        {
+          "group": "com.google.api.grpc",
+          "module": "proto-google-cloud-maps-automotivemaps-v1-java",
+          "version": {
+            "requires": "0.0.0-SNAPSHOT"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gapic-google-cloud-maps-automotivemaps-v1-java-0.0.0-SNAPSHOT.jar",
+          "url": "gapic-google-cloud-maps-automotivemaps-v1-java-0.0.0-SNAPSHOT.jar",
+          "size": 36448,
+          "sha512": "27cb08f27843e87a8b018da394f38c2c1e31852bbe751e595a9e7f3304894dfd7267b420a24ec19c899beb609bc0b3e89205464bb582d43634774cee2da07574",
+          "sha256": "3a3be293d40f28cc271edfa7e8a1037c9e02b5ef83a9b7da2a497768ee8409bf",
+          "sha1": "6b9be88b767808717f37b1c2d6a7b5a6c35fea98",
+          "md5": "25d47c7754638e96bfa55794aa0b9af6"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "javax.annotation",
+          "module": "javax.annotation-api",
+          "version": {
+            "requires": "1.3.2"
+          }
+        },
+        {
+          "group": "com.google.api",
+          "module": "gax",
+          "version": {
+            "requires": "2.23.3"
+          }
+        },
+        {
+          "group": "com.google.api",
+          "module": "gax-grpc",
+          "version": {
+            "requires": "2.23.3"
+          }
+        },
+        {
+          "group": "com.google.api",
+          "module": "gax-httpjson",
+          "version": {
+            "requires": "0.108.3"
+          }
+        },
+        {
+          "group": "io.grpc",
+          "module": "grpc-protobuf",
+          "version": {
+            "requires": "1.53.0"
+          }
+        },
+        {
+          "group": "com.google.api.grpc",
+          "module": "proto-google-cloud-maps-automotivemaps-v1-java",
+          "version": {
+            "requires": "0.0.0-SNAPSHOT"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gapic-google-cloud-maps-automotivemaps-v1-java-0.0.0-SNAPSHOT.jar",
+          "url": "gapic-google-cloud-maps-automotivemaps-v1-java-0.0.0-SNAPSHOT.jar",
+          "size": 36448,
+          "sha512": "27cb08f27843e87a8b018da394f38c2c1e31852bbe751e595a9e7f3304894dfd7267b420a24ec19c899beb609bc0b3e89205464bb582d43634774cee2da07574",
+          "sha256": "3a3be293d40f28cc271edfa7e8a1037c9e02b5ef83a9b7da2a497768ee8409bf",
+          "sha1": "6b9be88b767808717f37b1c2d6a7b5a6c35fea98",
+          "md5": "25d47c7754638e96bfa55794aa0b9af6"
+        }
+      ]
+    }
+  ]
+}

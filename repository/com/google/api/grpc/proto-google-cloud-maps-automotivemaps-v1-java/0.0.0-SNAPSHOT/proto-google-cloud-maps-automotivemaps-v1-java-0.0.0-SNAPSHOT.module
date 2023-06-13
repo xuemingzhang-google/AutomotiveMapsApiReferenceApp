@@ -1,0 +1,97 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.google.api.grpc",
+    "module": "proto-google-cloud-maps-automotivemaps-v1-java",
+    "version": "0.0.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.6.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "proto-google-cloud-maps-automotivemaps-v1-java-0.0.0-SNAPSHOT.jar",
+          "url": "proto-google-cloud-maps-automotivemaps-v1-java-0.0.0-SNAPSHOT.jar",
+          "size": 891794,
+          "sha512": "74c66a340b93b237f532c6311893fb3679fa6b0aff28892def2378473c75e8df676e02e64ecfbffa3d177cf066efa951c8b2c039f93e3399002063ba8722bd88",
+          "sha256": "7ddb101e2a9d38943ac44e8d7282a40f7627c11f699934379939daae5f85009a",
+          "sha1": "b69bc6d1abea5bda16e97b0feaf7eab9405c76eb",
+          "md5": "9cab0355c35bec94a7c72ba6797681f5"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.protobuf",
+          "module": "protobuf-java",
+          "version": {
+            "requires": "3.21.10"
+          }
+        },
+        {
+          "group": "com.google.guava",
+          "module": "guava",
+          "version": {
+            "requires": "31.1-jre"
+          }
+        },
+        {
+          "group": "com.google.api",
+          "module": "api-common",
+          "version": {
+            "requires": "2.6.2"
+          }
+        },
+        {
+          "group": "com.google.api.grpc",
+          "module": "proto-google-common-protos",
+          "version": {
+            "requires": "2.14.2"
+          }
+        },
+        {
+          "group": "javax.annotation",
+          "module": "javax.annotation-api",
+          "version": {
+            "requires": "1.3.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "proto-google-cloud-maps-automotivemaps-v1-java-0.0.0-SNAPSHOT.jar",
+          "url": "proto-google-cloud-maps-automotivemaps-v1-java-0.0.0-SNAPSHOT.jar",
+          "size": 891794,
+          "sha512": "74c66a340b93b237f532c6311893fb3679fa6b0aff28892def2378473c75e8df676e02e64ecfbffa3d177cf066efa951c8b2c039f93e3399002063ba8722bd88",
+          "sha256": "7ddb101e2a9d38943ac44e8d7282a40f7627c11f699934379939daae5f85009a",
+          "sha1": "b69bc6d1abea5bda16e97b0feaf7eab9405c76eb",
+          "md5": "9cab0355c35bec94a7c72ba6797681f5"
+        }
+      ]
+    }
+  ]
+}
