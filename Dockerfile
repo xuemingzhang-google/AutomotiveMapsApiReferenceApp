@@ -6,6 +6,7 @@ ADD repository /usr/share/maven/ref/repository
 
 # Set the working directory to /app
 WORKDIR /app
+
 # Copy the pom.xml file to download dependencies
 COPY pom.xml ./
 # Copy local code to the container image.

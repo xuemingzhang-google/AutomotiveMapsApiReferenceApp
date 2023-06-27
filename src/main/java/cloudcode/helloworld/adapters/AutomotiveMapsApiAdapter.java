@@ -28,9 +28,9 @@ import java.util.Optional;
  */
 public class AutomotiveMapsApiAdapter {
   public static String fetchTiles() throws Exception {
-    String accessToken = "ya29.c.b0Aaekm1J1ms-_C1dldWYjXZtov_pFq0O5MNy3hlWH9HztIjYxQt7pcwz1e98o6q8oCuqY9C0lbwgxLWcNNztbE3qoEm5cdUBF31-Ztp7KCIXsQMFB0f8yFVDGIcC8cF7Ydufh7NGUschYrNLMQ1IICFfbO5oQvKNg-baCy2i4wuwVufpv896jTYLUHejI073o1fhMH1vivXoj6idzIyoNMOP6FTzvUJs6CCvjBDctyaPNfCDNeofWoUPJKpwFvpbxRV2tdamXx3rqMltdAVxkRxwZ3kxK1E05LE_-QuN_YJeIVshZnB0zfOd6GjXw-gEI8m3qA3rqH3kl6SfKfHTVEYl-prwf-wRy6yPciJo4v5Bqgkhj7VWb32zzDHunZUrA_e5LfA0ulkkqTPvHn2HjixcabZ2rkOYit9NKYVEODr5XmvWrZGUdHmYxHPH1qegxyfTi9Rv5d7jzwsLOEW3CNL_pmBHvlKa5oSFQ6G_JEFMAais2NXUWd3uzFyeK4VbPxbvERF0qmu1pNrCaT-teaZBbdoR_K4RKF5CXp-QMUfzeJ703uv7RQqjM6j76xFMM7DxTWAT591DRiVcpRqeoJSz_Xlac6BiJ1Syh5exWsoxXrFlf1W9hw9yg3u4_2QVaQ-zBgvIfwoZIM0QewyjemVSvcvsra_8X67ypXIm6wiqf1okeM2V8ap-z48avufx3iIhMcXJg4sZRexZjM_6bbjjgebopOlZ33la9B-6Ba6FQ3y5ySqXMuwczvpn_uf6spUyqQayJaMbYxu61n6M_19gpxoRuOYSwrgM4mj_xdjrxVYJY6ciBxVuMs6wQcYvaJn2r5uM3QWJ4Szthy0_z7sf-8MQjR1k8OWIW0u-eauWZ4ymemoy-j0SMdO6fZcJUla9q1b73J59pppsqXf_oU-jqWgbFUeg12Qca4i4trfwU_UZ06bhyIByXQilvXcgF69M96I1yfXVJRyUWsQvIr3_sJ5pFym61lj6SjchQ95ozc8ema3gqjt4";
+    // String accessToken = "ya29.c.b0Aaekm1JcNA04A2PenVv_ko9ZfnfIOY-sNcQdbuuzOXx7ciT2qp0nvygmwCzEIZii9pt62AJ4ZHMVV6Nd4d5Lu0qabCiGCOovjXX5ZAKYeE5Y_tm0LAsNgsfqRLjeUDQDT23imX4944WsLt5yhO8MOdZ7BIac30s1LEfYBXorWSkN56kp4vF7quJBwbAhl1RPy1NT-2p23G56UA-halncvyEmejL10Q0y-ipeRtW8zaN9oFC6E4HJ6I9qfyBjkIwndkNYNv9wDvn7X_ttxlk0FWkrwluSETMkpAJtNHp896Bivp6_Jz-qDrIFcbxHXS9VilXrEre01h3Nmb2Qv0W3d0uYjy24sk8Y5ewULnWSWUYcxfD2qiXB4VFdtk31buiXwdhBXan0txtKNHdYbP65pN7n6X8WvLoqklOVNpzy0_oDAIs2zVftVddo17QZXnS6UkMulSWUBSm13Tf_Z4sHdJxvkdWhNO9GCGFBu97gFBTFj1-xuYyCEmrV2N0dJm_HhaSUGrRfUQujvY5dhHLeNp3TslblebrUSwe_nqiMSQ2GB9T1TKXgYQbIxJfS4iqevlzo1gL591PwUj2yok3h2vdsj7vSVXQnop-w--cx8szvp2kJ11F7JnUI73sUfMp0fo2x_wrd048UihIqZ9MUovMkBvniR9om92cJejVhUyo9c7aWRBeWYqUup-X54pBJQminWodkyjjer8gtSq2j-aUpn5_lqr4Y6Wd9Rs4amgix6leuUymJfhxF-OJBY6ehQ3ci91ouoqkU_z6ZFpgInX7-lJe4_-9Jzc7-8jo8I4af3wg6Y4IjQheeaIumqvam9vgd5_xvaOWF2p9dZoIMoa2eba07du2VXFJS6i4-V1OiMn-p7-YOSJqOZfY5JRyxyU-ubxvdc22aFuV914vRURk_J4Jfewxmju0ky6nvtBpotlO2ffJhfeu0m7Feyto8niI6BF6WMzyzlVS2ob_j0BuwnIdpa3py0bIY3zj4i_ikln1SVU-JW0s";
     // Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
-    Credentials credentials = GoogleCredentials.getApplicationDefault();
+    Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped("https://www.googleapis.com/auth/automotivemaps");
     CredentialsProvider credentialsProvider = FixedCredentialsProvider.create(credentials);
     AutomotiveMapsSettings automotiveMapsSettings =
         AutomotiveMapsSettings.newBuilder()
@@ -46,7 +46,7 @@ public class AutomotiveMapsApiAdapter {
 
       return mostRecentMap.get().getName();
 
-      // processTiles(automotiveMapsClient, mostRecentMap.get().getName());
+      //return processTilesStub(automotiveMapsClient, mostRecentMap.get().getName());
     }
   }
 
@@ -73,6 +73,27 @@ public class AutomotiveMapsApiAdapter {
     // Determine the most recent map version.
     return allAvailableMaps.stream()
         .max(Comparator.comparing(map -> map.getGenerationTime(), Timestamps.comparator()));
+  }
+
+  public static String processTilesStub(AutomotiveMapsClient automotiveMapsClient, String mapName) {
+    // Request all tiles for a particular viewport and map version.
+    // Tiles will be populated with data from the specified DataLayer.
+    // Use a larger page size to page through results faster, but
+    // be careful not to use a page size so large that your client OOMs.
+    ListTilesRequest request = ListTilesRequest.newBuilder().setParent(mapName).setPageSize(30)
+        .setGeoBounds(GeoBounds.newBuilder().setViewport(
+            Viewport.newBuilder()
+                .setLow(LatLng.newBuilder().setLatitude(57.716018).setLongitude(11.875966))
+                .setHigh(LatLng.newBuilder().setLatitude(57.753558).setLongitude(11.978491)).build()
+
+        ).build()).setDataLayer(DataLayer.ALL_LAYERS).build();
+
+    ListTilesResponse response = automotiveMapsClient.listTilesCallable().call(request);
+    if (response == null || response.getTilesList() == null || response.getTilesList().isEmpty()) {
+      return "Tile list does not exist";
+    }
+    return response.getTilesList().size() + response.getTilesList().get(0).toString();
+
   }
 
   public static void processTiles(AutomotiveMapsClient automotiveMapsClient, String mapName) {
