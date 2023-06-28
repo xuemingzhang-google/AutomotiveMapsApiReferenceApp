@@ -28,7 +28,9 @@ import java.util.Optional;
  */
 public class AutomotiveMapsApiAdapter {
   public static String fetchTiles() throws Exception {
-    // String accessToken = "ya29.c.b0Aaekm1JcNA04A2PenVv_ko9ZfnfIOY-sNcQdbuuzOXx7ciT2qp0nvygmwCzEIZii9pt62AJ4ZHMVV6Nd4d5Lu0qabCiGCOovjXX5ZAKYeE5Y_tm0LAsNgsfqRLjeUDQDT23imX4944WsLt5yhO8MOdZ7BIac30s1LEfYBXorWSkN56kp4vF7quJBwbAhl1RPy1NT-2p23G56UA-halncvyEmejL10Q0y-ipeRtW8zaN9oFC6E4HJ6I9qfyBjkIwndkNYNv9wDvn7X_ttxlk0FWkrwluSETMkpAJtNHp896Bivp6_Jz-qDrIFcbxHXS9VilXrEre01h3Nmb2Qv0W3d0uYjy24sk8Y5ewULnWSWUYcxfD2qiXB4VFdtk31buiXwdhBXan0txtKNHdYbP65pN7n6X8WvLoqklOVNpzy0_oDAIs2zVftVddo17QZXnS6UkMulSWUBSm13Tf_Z4sHdJxvkdWhNO9GCGFBu97gFBTFj1-xuYyCEmrV2N0dJm_HhaSUGrRfUQujvY5dhHLeNp3TslblebrUSwe_nqiMSQ2GB9T1TKXgYQbIxJfS4iqevlzo1gL591PwUj2yok3h2vdsj7vSVXQnop-w--cx8szvp2kJ11F7JnUI73sUfMp0fo2x_wrd048UihIqZ9MUovMkBvniR9om92cJejVhUyo9c7aWRBeWYqUup-X54pBJQminWodkyjjer8gtSq2j-aUpn5_lqr4Y6Wd9Rs4amgix6leuUymJfhxF-OJBY6ehQ3ci91ouoqkU_z6ZFpgInX7-lJe4_-9Jzc7-8jo8I4af3wg6Y4IjQheeaIumqvam9vgd5_xvaOWF2p9dZoIMoa2eba07du2VXFJS6i4-V1OiMn-p7-YOSJqOZfY5JRyxyU-ubxvdc22aFuV914vRURk_J4Jfewxmju0ky6nvtBpotlO2ffJhfeu0m7Feyto8niI6BF6WMzyzlVS2ob_j0BuwnIdpa3py0bIY3zj4i_ikln1SVU-JW0s";
+    // Follow https://developers.google.com/maps/documentation/automotive/automotive-maps/oauth-token to
+    // generate a short lived auth token for local development, DO NOT include the token in public Git repo.
+    // String accessToken = "";
     // Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
     Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped("https://www.googleapis.com/auth/automotivemaps");
     CredentialsProvider credentialsProvider = FixedCredentialsProvider.create(credentials);
