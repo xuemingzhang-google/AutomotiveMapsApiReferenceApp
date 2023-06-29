@@ -27,12 +27,10 @@ import java.util.Optional;
  * Fetches and processes tiles for the latest available map version.
  */
 public class AutomotiveMapsApiAdapter {
+  private static final String ACA_SCOPE = "https://www.googleapis.com/auth/automotivemaps";
+
   public static String fetchTiles() throws Exception {
-    // Follow https://developers.google.com/maps/documentation/automotive/automotive-maps/oauth-token to
-    // generate a short lived auth token for local development, DO NOT include the token in public Git repo.
-    // String accessToken = "";
-    // Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
-    Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped("https://www.googleapis.com/auth/automotivemaps");
+    Credentials credentials = getCredentials();
     CredentialsProvider credentialsProvider = FixedCredentialsProvider.create(credentials);
     AutomotiveMapsSettings automotiveMapsSettings =
         AutomotiveMapsSettings.newBuilder()
@@ -50,6 +48,18 @@ public class AutomotiveMapsApiAdapter {
 
       //return processTilesStub(automotiveMapsClient, mostRecentMap.get().getName());
     }
+  }
+
+  private static Credentials getCredentials() throws Exception{
+    // For local development: follow https://developers.google.com/maps/documentation/automotive/automotive-maps/oauth-token
+    // to generate a short-lived auth token, DO NOT include the token in public Git repo.
+    // String accessToken = "";
+    // Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
+
+    //For Prod authorization: use application default credentials(ADC) with explicitly requested scope.
+    Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped(ACA_SCOPE);
+
+    return credentials;
   }
 
   public static Optional<Map> getLatestAvailableMap(AutomotiveMapsClient automotiveMapsClient) {
