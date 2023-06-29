@@ -63,26 +63,6 @@ public class AutomotiveMapsApiAdapter {
 
     return mostRecentMap.isPresent()? mostRecentMap.get().getName() : MAP_NOT_PRESENT_MSG;
   }
-  // public static String fetchTiles() throws Exception {
-  //   Credentials credentials = getCredentials();
-  //   CredentialsProvider credentialsProvider = FixedCredentialsProvider.create(credentials);
-  //   AutomotiveMapsSettings automotiveMapsSettings =
-  //       AutomotiveMapsSettings.newBuilder()
-  //           .setCredentialsProvider(credentialsProvider)
-  //           .build();
-  //   try (AutomotiveMapsClient automotiveMapsClient = AutomotiveMapsClient.create(
-  //       automotiveMapsSettings)) {
-  //     Optional<Map> mostRecentMap = getLatestAvailableMap(automotiveMapsClient);
-  //
-  //     if (mostRecentMap.isEmpty()) {
-  //       return "Empty!!"; // There are no available map versions!
-  //     }
-  //
-  //     return mostRecentMap.get().getName();
-  //
-  //     //return processTilesStub(automotiveMapsClient, mostRecentMap.get().getName());
-  //   }
-  // }
 
   private void setUpAutomotiveMapsClient() throws Exception{
     Credentials credentials = getCredentials();
@@ -108,31 +88,6 @@ public class AutomotiveMapsApiAdapter {
 
     return credentials;
   }
-
-  // public static Optional<Map> getLatestAvailableMap(AutomotiveMapsClient automotiveMapsClient) {
-  //   // Request all available map versions.
-  //   ListMapsRequest request = ListMapsRequest.newBuilder().setPageSize(10)
-  //       .setFilter("state=AVAILABLE").build();
-  //   ArrayList<Map> allAvailableMaps = new ArrayList<>();
-  //
-  //   // Page through the results.
-  //   while (true) {
-  //     ListMapsResponse response = automotiveMapsClient.listMapsCallable().call(request);
-  //     for (Map map : response.getMapsList()) {
-  //       allAvailableMaps.add(map);
-  //     }
-  //     String nextPageToken = response.getNextPageToken();
-  //     if (!Strings.isNullOrEmpty(nextPageToken)) {
-  //       request = request.toBuilder().setPageToken(nextPageToken).build();
-  //     } else {
-  //       break;
-  //     }
-  //   }
-  //
-  //   // Determine the most recent map version.
-  //   return allAvailableMaps.stream()
-  //       .max(Comparator.comparing(map -> map.getGenerationTime(), Timestamps.comparator()));
-  // }
 
   public static String processTilesStub(AutomotiveMapsClient automotiveMapsClient, String mapName) {
     // Request all tiles for a particular viewport and map version.
