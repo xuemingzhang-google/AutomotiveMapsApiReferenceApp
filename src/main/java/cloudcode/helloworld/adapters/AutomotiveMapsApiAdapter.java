@@ -32,6 +32,10 @@ public class AutomotiveMapsApiAdapter {
 
   private static final String MAP_NOT_PRESENT_MSG = "Most recent map version does not present";
 
+  private static final String TILE_NOT_PRESENT_MSG = "No tile available.";
+
+  private static final int LIST_TILES_DEFAULT_PAGE_SIZE = 30;
+
   private AutomotiveMapsClient automotiveMapsClient;
   public AutomotiveMapsApiAdapter() throws Exception {
     setUpAutomotiveMapsClient();
@@ -89,24 +93,29 @@ public class AutomotiveMapsApiAdapter {
     return credentials;
   }
 
-  public static String processTilesStub(AutomotiveMapsClient automotiveMapsClient, String mapName) {
+  public String listTiles(double lowLat, double lowLang, double highLat, double highLong, Optional<Integer> pageSize, Optional<String> nextPageToken) {
+    String mapName = getLatestAvailableMap();
     // Request all tiles for a particular viewport and map version.
     // Tiles will be populated with data from the specified DataLayer.
     // Use a larger page size to page through results faster, but
     // be careful not to use a page size so large that your client OOMs.
-    ListTilesRequest request = ListTilesRequest.newBuilder().setParent(mapName).setPageSize(30)
+    ListTilesRequest request = ListTilesRequest.newBuilder().setParent(mapName)
+        .setPageSize(pageSize.isPresent()? pageSize.get() : LIST_TILES_DEFAULT_PAGE_SIZE)
         .setGeoBounds(GeoBounds.newBuilder().setViewport(
             Viewport.newBuilder()
-                .setLow(LatLng.newBuilder().setLatitude(57.716018).setLongitude(11.875966))
-                .setHigh(LatLng.newBuilder().setLatitude(57.753558).setLongitude(11.978491)).build()
-
+                .setLow(LatLng.newBuilder().setLatitude(lowLat).setLongitude(lowLang))
+                .setHigh(LatLng.newBuilder().setLatitude(highLat).setLongitude(highLong)).build()
         ).build()).setDataLayer(DataLayer.ALL_LAYERS).build();
+
+    if (nextPageToken.isPresent()) {
+      request = request.toBuilder().setPageToken(nextPageToken.get()).build();
+    }
 
     ListTilesResponse response = automotiveMapsClient.listTilesCallable().call(request);
     if (response == null || response.getTilesList() == null || response.getTilesList().isEmpty()) {
-      return "Tile list does not exist";
+      return TILE_NOT_PRESENT_MSG;
     }
-    return response.getTilesList().size() + response.getTilesList().get(0).toString();
+    return response.getTilesList().toString() + response.getNextPageToken();
 
   }
 
