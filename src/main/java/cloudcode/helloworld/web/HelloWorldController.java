@@ -14,6 +14,12 @@ public final class HelloWorldController {
   private static String project;
   private static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
 
+  private AutomotiveMapsApiAdapter automotiveMapsApiAdapter;
+
+  public HelloWorldController() throws Exception {
+    automotiveMapsApiAdapter = new AutomotiveMapsApiAdapter();
+  }
+
   /**
    * Create an endpoint for the landing page
    *
@@ -26,11 +32,11 @@ public final class HelloWorldController {
     String revision = System.getenv("K_REVISION") == null ? "???" : System.getenv("K_REVISION");
     String service = System.getenv("K_SERVICE") == null ? "???" : System.getenv("K_SERVICE");
 
-    String latestMapName = AutomotiveMapsApiAdapter.fetchTiles();
+    String latestMapVersion = automotiveMapsApiAdapter.getLatestAvailableMap();
 
     // Set variables in html template.
     // model.addAttribute("revision", revision);
-    model.addAttribute("revision", latestMapName);
+    model.addAttribute("revision", latestMapVersion);
     model.addAttribute("service", service);
     return "index";
   }

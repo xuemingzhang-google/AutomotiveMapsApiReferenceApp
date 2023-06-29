@@ -24,45 +24,20 @@ import java.util.Comparator;
 import java.util.Optional;
 
 /**
- * Fetches and processes tiles for the latest available map version.
+ * Adapter class to call Google Automotive Cloud API's listMaps and listTiles APIs.
+ * API reference: https://developers.google.com/maps/documentation/automotive/automotive-maps/reference/rpc
  */
 public class AutomotiveMapsApiAdapter {
   private static final String ACA_SCOPE = "https://www.googleapis.com/auth/automotivemaps";
 
-  public static String fetchTiles() throws Exception {
-    Credentials credentials = getCredentials();
-    CredentialsProvider credentialsProvider = FixedCredentialsProvider.create(credentials);
-    AutomotiveMapsSettings automotiveMapsSettings =
-        AutomotiveMapsSettings.newBuilder()
-            .setCredentialsProvider(credentialsProvider)
-            .build();
-    try (AutomotiveMapsClient automotiveMapsClient = AutomotiveMapsClient.create(
-        automotiveMapsSettings)) {
-      Optional<Map> mostRecentMap = getLatestAvailableMap(automotiveMapsClient);
+  private static final String MAP_NOT_PRESENT_MSG = "Most recent map version does not present";
 
-      if (mostRecentMap.isEmpty()) {
-        return "Empty!!"; // There are no available map versions!
-      }
-
-      return mostRecentMap.get().getName();
-
-      //return processTilesStub(automotiveMapsClient, mostRecentMap.get().getName());
-    }
+  private AutomotiveMapsClient automotiveMapsClient;
+  public AutomotiveMapsApiAdapter() throws Exception {
+    setUpAutomotiveMapsClient();
   }
 
-  private static Credentials getCredentials() throws Exception{
-    // For local development: follow https://developers.google.com/maps/documentation/automotive/automotive-maps/oauth-token
-    // to generate a short-lived auth token, DO NOT include the token in public Git repo.
-    // String accessToken = "";
-    // Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
-
-    //For Prod authorization: use application default credentials(ADC) with explicitly requested scope.
-    Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped(ACA_SCOPE);
-
-    return credentials;
-  }
-
-  public static Optional<Map> getLatestAvailableMap(AutomotiveMapsClient automotiveMapsClient) {
+  public String getLatestAvailableMap() {
     // Request all available map versions.
     ListMapsRequest request = ListMapsRequest.newBuilder().setPageSize(10)
         .setFilter("state=AVAILABLE").build();
@@ -83,9 +58,81 @@ public class AutomotiveMapsApiAdapter {
     }
 
     // Determine the most recent map version.
-    return allAvailableMaps.stream()
+    Optional<Map> mostRecentMap = allAvailableMaps.stream()
         .max(Comparator.comparing(map -> map.getGenerationTime(), Timestamps.comparator()));
+
+    return mostRecentMap.isPresent()? mostRecentMap.get().getName() : MAP_NOT_PRESENT_MSG;
   }
+  // public static String fetchTiles() throws Exception {
+  //   Credentials credentials = getCredentials();
+  //   CredentialsProvider credentialsProvider = FixedCredentialsProvider.create(credentials);
+  //   AutomotiveMapsSettings automotiveMapsSettings =
+  //       AutomotiveMapsSettings.newBuilder()
+  //           .setCredentialsProvider(credentialsProvider)
+  //           .build();
+  //   try (AutomotiveMapsClient automotiveMapsClient = AutomotiveMapsClient.create(
+  //       automotiveMapsSettings)) {
+  //     Optional<Map> mostRecentMap = getLatestAvailableMap(automotiveMapsClient);
+  //
+  //     if (mostRecentMap.isEmpty()) {
+  //       return "Empty!!"; // There are no available map versions!
+  //     }
+  //
+  //     return mostRecentMap.get().getName();
+  //
+  //     //return processTilesStub(automotiveMapsClient, mostRecentMap.get().getName());
+  //   }
+  // }
+
+  private void setUpAutomotiveMapsClient() throws Exception{
+    Credentials credentials = getCredentials();
+    CredentialsProvider credentialsProvider = FixedCredentialsProvider.create(credentials);
+    AutomotiveMapsSettings automotiveMapsSettings =
+        AutomotiveMapsSettings.newBuilder()
+            .setCredentialsProvider(credentialsProvider)
+            .build();
+
+    automotiveMapsClient = AutomotiveMapsClient.create(
+        automotiveMapsSettings);
+  }
+  private Credentials getCredentials() throws Exception{
+    // For local development: follow https://developers.google.com/maps/documentation/automotive/automotive-maps/oauth-token
+    // to generate a short-lived auth token, uncomment the below two lines and replace "" with the token generated.
+    // Comment out the credentials created for Prod authorization.
+    // DO NOT include the token in public Git repo.
+    // String accessToken = "";
+    // Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
+
+    //For Prod authorization: use application default credentials(ADC) with explicitly requested scope.
+    Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped(ACA_SCOPE);
+
+    return credentials;
+  }
+
+  // public static Optional<Map> getLatestAvailableMap(AutomotiveMapsClient automotiveMapsClient) {
+  //   // Request all available map versions.
+  //   ListMapsRequest request = ListMapsRequest.newBuilder().setPageSize(10)
+  //       .setFilter("state=AVAILABLE").build();
+  //   ArrayList<Map> allAvailableMaps = new ArrayList<>();
+  //
+  //   // Page through the results.
+  //   while (true) {
+  //     ListMapsResponse response = automotiveMapsClient.listMapsCallable().call(request);
+  //     for (Map map : response.getMapsList()) {
+  //       allAvailableMaps.add(map);
+  //     }
+  //     String nextPageToken = response.getNextPageToken();
+  //     if (!Strings.isNullOrEmpty(nextPageToken)) {
+  //       request = request.toBuilder().setPageToken(nextPageToken).build();
+  //     } else {
+  //       break;
+  //     }
+  //   }
+  //
+  //   // Determine the most recent map version.
+  //   return allAvailableMaps.stream()
+  //       .max(Comparator.comparing(map -> map.getGenerationTime(), Timestamps.comparator()));
+  // }
 
   public static String processTilesStub(AutomotiveMapsClient automotiveMapsClient, String mapName) {
     // Request all tiles for a particular viewport and map version.
