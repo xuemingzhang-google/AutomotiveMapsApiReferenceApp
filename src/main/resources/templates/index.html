@@ -3,13 +3,24 @@
 <head>
 <meta charset=utf-8>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Congratulations | Cloud Run</title>
+<title>Automotive Maps API Prober</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="preload" as="font" />
 <link th:href="@{img/cloud-run-32-color.png}" rel="icon" type="image/png" />
 <link th:href="@{css/style.css}" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	function showListMapsResults() {
+		$.get("/listMaps", function(data) {
+			$("#listMapsResults").text(data);
+		});
+	}
+</script>
 </head>
 
 <body>
+	<h1>Automotive Maps API Prober</h1>
+	<button onclick="showListMapsResults()">List Maps</button>
+	<div id="listMapsResults"></div>
 	<div class="container">
 		<div class="hero">
 			<div style="text-align:center;">
