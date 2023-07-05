@@ -15,12 +15,55 @@
 		});
 	}
 </script>
+<script>
+	$(document).ready(function() {
+		$("#myForm").submit(function(event) {
+			event.preventDefault(); // Prevent default form submission
+
+			// Get form data
+			let formData = {
+				lowLat: $("#lowLat").val(),
+				lowLang: $("#lowLang").val(),
+				highLat: $("#highLat").val(),
+				highLong: $("#highLong").val(),
+				pageSize: $("#pageSize").val(),
+				nextPageToken: $("#nextPageToken").val()
+			};
+
+			// Construct URL with query parameters
+			let url = "/listTiles?lowLat=" + encodeURIComponent(formData.lowLat) +
+					"&lowLang=" + encodeURIComponent(formData.lowLang) +
+					"&highLat=" + encodeURIComponent(formData.highLat) +
+					"&highLong=" + encodeURIComponent(formData.highLong) +
+					"&pageSize=" + encodeURIComponent(formData.pageSize) +
+					"&nextPageToken=" + encodeURIComponent(formData.nextPageToken);
+
+			// Send AJAX request
+			$.get(url, function(response) {
+				// Handle response from the server
+				$("#listTilesResults").text(response);
+			});
+		});
+	});
+</script>
 </head>
 
 <body>
 	<h1>Automotive Maps API Prober</h1>
 	<button onclick="showListMapsResults()">List Maps</button>
 	<div id="listMapsResults"></div>
+
+	<form id="myForm">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name"><br>
+
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email"><br>
+
+		<button type="submit">Submit</button>
+	</form>
+	<div id="listTilesResults"></div>
+
 	<div class="container">
 		<div class="hero">
 			<div style="text-align:center;">

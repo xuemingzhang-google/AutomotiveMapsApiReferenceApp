@@ -14,7 +14,8 @@ public class ListTilesController {
     automotiveMapsApiAdapter = new AutomotiveMapsApiAdapter();
   }
   @GetMapping("/listTiles")
-  public String listTiles(@RequestParam(required = true) Double lowLat,
+  public String listTiles(
+      @RequestParam(required = true) Double lowLat,
       @RequestParam(required = true) Double lowLang,
       @RequestParam(required = true) Double highLat,
       @RequestParam(required = true) Double highLong,

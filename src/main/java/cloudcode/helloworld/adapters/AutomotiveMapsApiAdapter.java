@@ -84,11 +84,11 @@ public class AutomotiveMapsApiAdapter {
     // to generate a short-lived auth token, uncomment the below two lines and replace "" with the token generated.
     // Comment out the credentials created for Prod authorization.
     // DO NOT include the token in public Git repo.
-    String accessToken = "ya29.c.b0Aaekm1L9oudREHJwh5xHm1QWP9vGfQTsKK1m-d_tiUI3X9gndjrSALucAAV_wquP_zM-guVnnf1uoGCf-9L_iY2vQgu2v3WCtYOBP9VG39qmtZmQnj0ImSHhhd42CJq2YPRVgJpZ_B2dfkVy6799h1UNxoqh2fuXESiquT7BlpNjW2uek-Gdv_CQVm7p2aki8Yexm8562z2f9L-TcOsyjDNBN6tbHUk5c5LvHf8AhHJMrF6S2sQoVeaSZvQWoICH_kh_S5DnR7ZIx-85rThTpubmp2GTiOu1_3KamHIWhrAwPA8FbfygwaEk5OWwVmKGFiyiDT-Dly9prQBoirH-OuuQ8-auD4eE9JTlppnfPu_ywe02xevRFc9xRZROLZAvPVC0cjeP9tRz_yL-fwiiLDKw6zaCnd4CRhDsz3NwE5ojEmRyDmUcFuJZ8WxbOWo_5cGbNA40NFBwB4XSeTgJRmVhm8jqeKSjDipVmBicBIHN9zRhf5EDsG_vtmRzcucAzMKwws-0CMrqqQS3465PRUTftkz5A29GfTsJAHJK_3qTDTMhFtRvsanLgYaHYnUtsFwG588K72XW15s9MaenjFulMi5O9b6iZwl6vge0-12q647re1f1jl0iedcnB7Zk-n9_QBpzQzhYsVhplhx8kt6p903WM9Mw2owqhS6vzdfSiyYsF7MQx-m8JgorIitXpOfO8-xBI5U-JlQZxjIccI-85yfRl1jfkeWsIBgBB5bmj_-eacSnSVdxodhIVfyFJQsvBWccqxXy0dJWUzFIn2R7s4cihV9_yzVnM1Rg0ynbak_8vpsVfYa5zenWSmSwosmMs_S6Ur3l4V2eBZuByfqwBgBQ-Rls3oSoVJbQzpgndapy1om_1gagRWW8QnUQqpzJzvt3ew6o-6ZbRZ70veReWbeY5kpOWnw4u81UO5mVxvIxjhk2pXc-YQ53ddyovj65o8fBb5d9RYmomM2U0wvhBul3XbqeawY-Fd2ill_sORUJXjFhqax";
-    Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
+    //String accessToken = "";
+    //Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
 
     //For Prod authorization: use application default credentials(ADC) with explicitly requested scope.
-    //Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped(ACA_SCOPE);
+    Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped(ACA_SCOPE);
 
     return credentials;
   }
