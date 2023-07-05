@@ -91,6 +91,7 @@ public class AutomotiveMapsApiAdapter {
     Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped(ACA_SCOPE);
 
     return credentials;
+
   }
 
   public String listTiles(double lowLat, double lowLang, double highLat, double highLong, Optional<Integer> pageSize, Optional<String> nextPageToken) {
