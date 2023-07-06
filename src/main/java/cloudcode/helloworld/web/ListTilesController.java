@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ListTilesController {
   private AutomotiveMapsApiAdapter automotiveMapsApiAdapter;
 
+  private String results;
+
   public ListTilesController() throws Exception {
     automotiveMapsApiAdapter = new AutomotiveMapsApiAdapter();
+    results = "";
   }
   @GetMapping("/listTiles")
   public String listTiles(
@@ -21,12 +24,15 @@ public class ListTilesController {
       @RequestParam(required = true) Double highLong,
       @RequestParam(required = false, defaultValue = "30") Optional<Integer> pageSize,
       @RequestParam(required = false) Optional<String> nextPageToken) {
-    return automotiveMapsApiAdapter.listTiles(
-        lowLat,
-        lowLang,
-        highLat,
-        highLong,
-        pageSize,
-        nextPageToken);
+    results += "TestTest\r";
+    return results;
+    // results += automotiveMapsApiAdapter.listTiles(
+    //         lowLat,
+    //         lowLang,
+    //         highLat,
+    //         highLong,
+    //         pageSize,
+    //         nextPageToken);
+    // return results;
   }
 }

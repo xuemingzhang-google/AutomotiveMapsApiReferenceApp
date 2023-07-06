@@ -84,11 +84,11 @@ public class AutomotiveMapsApiAdapter {
     // to generate a short-lived auth token, uncomment the below two lines and replace "" with the token generated.
     // Comment out the credentials created for Prod authorization.
     // DO NOT include the token in public Git repo.
-    //String accessToken = "";
-    //Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
+    String accessToken = "";
+    Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
 
     //For Prod authorization: use application default credentials(ADC) with explicitly requested scope.
-    Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped(ACA_SCOPE);
+    //Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped(ACA_SCOPE);
 
     return credentials;
 

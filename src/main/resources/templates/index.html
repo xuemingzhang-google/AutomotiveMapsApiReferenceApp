@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	function showListMapsResults() {
+		// Send AJAX request
 		$.get("/listMaps", function(data) {
 			$("#listMapsResults").text(data);
 		});
@@ -17,7 +18,7 @@
 </script>
 <script>
 	$(document).ready(function() {
-		$("#myForm").submit(function(event) {
+		$("#listTilesRequestForm").submit(function(event) {
 			event.preventDefault(); // Prevent default form submission
 
 			// Get form data
@@ -53,12 +54,24 @@
 	<button onclick="showListMapsResults()">List Maps</button>
 	<div id="listMapsResults"></div>
 
-	<form id="myForm">
-		<label for="name">Name:</label>
-		<input type="text" id="name" name="name"><br>
+	<form id="listTilesRequestForm">
+		<label for="lowLat">lowLat:</label>
+		<input type="number" step="any" required="required" id="lowLat" name="lowLat"><br>
 
-		<label for="email">Email:</label>
-		<input type="email" id="email" name="email"><br>
+		<label for="lowLang">lowLang:</label>
+		<input type="number" step="any" required="required" id="lowLang" name="lowLang"><br>
+
+		<label for="highLat">highLat:</label>
+		<input type="number" step="any" required="required" id="highLat" name="highLat"><br>
+
+		<label for="highLong">highLong:</label>
+		<input type="number" step="any" required="required" id="highLong" name="highLong"><br>
+
+		<label for="pageSize">pageSize:</label>
+		<input type="text" id="pageSize" name="pageSize"><br>
+
+		<label for="nextPageToken">nextPageToken:</label>
+		<input type="text" id="nextPageToken" name="nextPageToken"><br>
 
 		<button type="submit">Submit</button>
 	</form>
