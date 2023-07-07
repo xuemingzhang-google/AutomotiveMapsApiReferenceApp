@@ -22,7 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class HelloWorldControllerIT {
+public class AutomotiveMapsApiProberControllerIT {
 
   @Test
   public void respondsToHttpRequest() throws IOException {

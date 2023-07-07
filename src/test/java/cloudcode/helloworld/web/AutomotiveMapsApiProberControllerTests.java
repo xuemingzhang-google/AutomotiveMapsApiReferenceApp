@@ -18,7 +18,7 @@ import org.junit.contrib.java.lang.system.EnvironmentVariables;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class HelloWorldControllerTests {
+public class AutomotiveMapsApiProberControllerTests {
 
   @Autowired private MockMvc mvc;
 

@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /** Defines a controller to handle HTTP requests */
 @Controller
-public final class HelloWorldController {
+public final class AutomotiveMapsApiProberController {
 
   private static String project;
-  private static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
+  private static final Logger logger = LoggerFactory.getLogger(AutomotiveMapsApiProberController.class);
 
   private AutomotiveMapsApiAdapter automotiveMapsApiAdapter;
 
-  public HelloWorldController() throws Exception {
+  public AutomotiveMapsApiProberController() throws Exception {
     automotiveMapsApiAdapter = new AutomotiveMapsApiAdapter();
   }
 
@@ -26,7 +26,7 @@ public final class HelloWorldController {
    * @return the index view template
    */
   @GetMapping("/")
-  public String helloWorld(Model model) throws Exception {
+  public String showProberHomePage(Model model) throws Exception {
 
     // Get Cloud Run environment variables.
     String revision = System.getenv("K_REVISION") == null ? "???" : System.getenv("K_REVISION");
