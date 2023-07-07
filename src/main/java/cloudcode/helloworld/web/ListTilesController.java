@@ -24,8 +24,8 @@ public class ListTilesController {
       @RequestParam(required = true) Double highLong,
       @RequestParam(required = false, defaultValue = "30") Optional<Integer> pageSize,
       @RequestParam(required = false) Optional<String> nextPageToken) {
-    results += "TestTest\r";
-    return results;
+    // results += "TestTest\r";
+    // return results;
     // results += automotiveMapsApiAdapter.listTiles(
     //         lowLat,
     //         lowLang,
@@ -33,6 +33,7 @@ public class ListTilesController {
     //         highLong,
     //         pageSize,
     //         nextPageToken);
-    // return results;
+    results += automotiveMapsApiAdapter.processTiles();
+    return results;
   }
 }

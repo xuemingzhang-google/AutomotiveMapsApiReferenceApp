@@ -100,6 +100,7 @@ public class AutomotiveMapsApiAdapter {
     // Tiles will be populated with data from the specified DataLayer.
     // Use a larger page size to page through results faster, but
     // be careful not to use a page size so large that your client OOMs.
+    System.out.println("coordinates: " + lowLat + "," + lowLang + "," + highLat + "," + highLong);
     ListTilesRequest request = ListTilesRequest.newBuilder().setParent(mapName)
         .setPageSize(pageSize.isPresent()? pageSize.get() : LIST_TILES_DEFAULT_PAGE_SIZE)
         .setGeoBounds(GeoBounds.newBuilder().setViewport(
@@ -120,7 +121,8 @@ public class AutomotiveMapsApiAdapter {
 
   }
 
-  public static void processTiles(AutomotiveMapsClient automotiveMapsClient, String mapName) {
+  public String processTiles() {
+    String mapName = getLatestAvailableMap();
     // Request all tiles for a particular viewport and map version.
     // Tiles will be populated with data from the specified DataLayer.
     // Use a larger page size to page through results faster, but
@@ -139,6 +141,7 @@ public class AutomotiveMapsApiAdapter {
       ListTilesResponse response = automotiveMapsClient.listTilesCallable().call(request);
       for (Tile element : response.getTilesList()) {
         // TODO: Process each tile.
+        return element.toString();
       }
       String nextPageToken = response.getNextPageToken();
       if (!Strings.isNullOrEmpty(nextPageToken)) {
@@ -147,5 +150,7 @@ public class AutomotiveMapsApiAdapter {
         break;
       }
     }
+
+    return "sample";
   }
 }

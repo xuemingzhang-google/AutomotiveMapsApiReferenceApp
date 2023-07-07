@@ -2,7 +2,7 @@
 # https://hub.docker.com/_/maven
 FROM maven:3-jdk-11-slim AS build-env
 
-ADD repository /usr/share/maven/ref/repository
+ADD repository2 /usr/share/maven/ref/repository
 
 # Set the working directory to /app
 WORKDIR /app
