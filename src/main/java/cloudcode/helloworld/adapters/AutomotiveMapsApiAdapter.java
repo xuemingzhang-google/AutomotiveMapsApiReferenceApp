@@ -94,7 +94,8 @@ public class AutomotiveMapsApiAdapter {
 
   }
 
-  public String listTiles(double lowLat, double lowLang, double highLat, double highLong, Optional<Integer> pageSize, Optional<String> nextPageToken) {
+  public String listTiles(double lowLat, double lowLang, double highLat, double highLong,
+      Optional<Integer> pageSize, Optional<String> nextPageToken) {
     String mapName = getLatestAvailableMap();
     // Request all tiles for a particular viewport and map version.
     // Tiles will be populated with data from the specified DataLayer.
@@ -133,7 +134,7 @@ public class AutomotiveMapsApiAdapter {
                 .setLow(LatLng.newBuilder().setLatitude(57.716018).setLongitude(11.875966))
                 .setHigh(LatLng.newBuilder().setLatitude(57.753558).setLongitude(11.978491)).build()
 
-        ).build()).setDataLayer(DataLayer.ALL_LAYERS).build();
+        ).build()).setDataLayer(DataLayer.HW_LIMITED_USE).build();
 
     // Page through the results.
     while (true) {
