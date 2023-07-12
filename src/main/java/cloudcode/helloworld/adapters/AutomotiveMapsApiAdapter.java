@@ -101,7 +101,6 @@ public class AutomotiveMapsApiAdapter {
     // Tiles will be populated with data from the specified DataLayer.
     // Use a larger page size to page through results faster, but
     // be careful not to use a page size so large that your client OOMs.
-    System.out.println("coordinates: " + lowLat + "," + lowLang + "," + highLat + "," + highLong);
     ListTilesRequest request = ListTilesRequest.newBuilder().setParent(mapName)
         .setPageSize(pageSize.isPresent()? pageSize.get() : LIST_TILES_DEFAULT_PAGE_SIZE)
         .setGeoBounds(GeoBounds.newBuilder().setViewport(
