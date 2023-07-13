@@ -7,6 +7,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.Test;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
+import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,8 +37,7 @@ public class AutomotiveMapsApiProberControllerTests {
     mvc.perform(MockMvcRequestBuilders.get("/"))
         .andExpect(status().isOk())
         .andExpect(view().name("index"))
-        .andExpect(model().attributeExists("service"))
-        .andExpect(model().attributeExists("revision"));
+        .andExpect(content().string(containsString("Automotive Maps API Prober")));
   }
 
 }
