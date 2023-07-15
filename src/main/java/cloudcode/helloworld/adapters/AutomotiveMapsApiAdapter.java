@@ -22,11 +22,13 @@ import com.google.type.LatLng;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 /**
  * Adapter class to call Google Automotive Cloud API's listMaps and listTiles APIs.
  * API reference: https://developers.google.com/maps/documentation/automotive/automotive-maps/reference/rpc
  */
+@Service
 public class AutomotiveMapsApiAdapter {
   private static final String ACA_SCOPE = "https://www.googleapis.com/auth/automotivemaps";
 
@@ -117,7 +119,7 @@ public class AutomotiveMapsApiAdapter {
     if (response == null || response.getTilesList() == null || response.getTilesList().isEmpty()) {
       return TILE_NOT_PRESENT_MSG;
     }
-    return response.getTilesList().toString() + response.getNextPageToken();
+    return response.getTilesList() + response.getNextPageToken();
 
   }
 

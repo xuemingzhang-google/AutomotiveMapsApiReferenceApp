@@ -9,8 +9,8 @@ public class ListMapsController {
 
   private AutomotiveMapsApiAdapter automotiveMapsApiAdapter;
 
-  public ListMapsController() throws Exception {
-    automotiveMapsApiAdapter = new AutomotiveMapsApiAdapter();
+  public ListMapsController(AutomotiveMapsApiAdapter automotiveMapsApiAdapter) throws Exception {
+    this.automotiveMapsApiAdapter = automotiveMapsApiAdapter;
   }
   @GetMapping("/listMaps")
   public String listMaps() {

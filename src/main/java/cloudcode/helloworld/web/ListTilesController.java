@@ -12,8 +12,8 @@ public class ListTilesController {
 
   private String results;
 
-  public ListTilesController() throws Exception {
-    automotiveMapsApiAdapter = new AutomotiveMapsApiAdapter();
+  public ListTilesController(AutomotiveMapsApiAdapter automotiveMapsApiAdapter) throws Exception {
+    this.automotiveMapsApiAdapter = automotiveMapsApiAdapter;
     results = "";
   }
   @GetMapping("/listTiles")
@@ -24,16 +24,13 @@ public class ListTilesController {
       @RequestParam(required = true) Double highLong,
       @RequestParam(required = false, defaultValue = "30") Optional<Integer> pageSize,
       @RequestParam(required = false) Optional<String> nextPageToken) {
-    // results += "TestTest\r";
-    // return results;
-    // results += automotiveMapsApiAdapter.listTiles(
-    //         lowLat,
-    //         lowLang,
-    //         highLat,
-    //         highLong,
-    //         pageSize,
-    //         nextPageToken);
-    results += automotiveMapsApiAdapter.processTiles();
+    results += automotiveMapsApiAdapter.listTiles(
+            lowLat,
+            lowLang,
+            highLat,
+            highLong,
+            pageSize,
+            nextPageToken);
     return results;
   }
 }
