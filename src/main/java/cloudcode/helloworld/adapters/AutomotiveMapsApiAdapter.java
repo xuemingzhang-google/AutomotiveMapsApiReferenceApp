@@ -123,36 +123,4 @@ public class AutomotiveMapsApiAdapter {
 
   }
 
-  public String processTiles() {
-    String mapName = getLatestAvailableMap();
-    // Request all tiles for a particular viewport and map version.
-    // Tiles will be populated with data from the specified DataLayer.
-    // Use a larger page size to page through results faster, but
-    // be careful not to use a page size so large that your client OOMs.
-    ListTilesRequest request = ListTilesRequest.newBuilder().setParent(mapName).setPageSize(30)
-        .setGeoBounds(GeoBounds.newBuilder().setViewport(
-            Viewport.newBuilder()
-                .setLow(LatLng.newBuilder().setLatitude(57.716018).setLongitude(11.875966))
-                .setHigh(LatLng.newBuilder().setLatitude(57.753558).setLongitude(11.978491)).build()
-
-        ).build()).setDataLayer(DataLayer.HW_LIMITED_USE).build();
-
-    // Page through the results.
-    while (true) {
-      // In this example, each response will contain 30 tiles.
-      ListTilesResponse response = automotiveMapsClient.listTilesCallable().call(request);
-      for (Tile element : response.getTilesList()) {
-        // TODO: Process each tile.
-        return element.toString();
-      }
-      String nextPageToken = response.getNextPageToken();
-      if (!Strings.isNullOrEmpty(nextPageToken)) {
-        request = request.toBuilder().setPageToken(nextPageToken).build();
-      } else {
-        break;
-      }
-    }
-
-    return "sample";
-  }
 }
