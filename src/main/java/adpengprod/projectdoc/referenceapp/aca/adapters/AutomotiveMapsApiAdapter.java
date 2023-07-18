@@ -1,4 +1,4 @@
-package cloudcode.helloworld.adapters;
+package adpengprod.projectdoc.referenceapp.aca.adapters;
 
 import com.google.api.gax.core.CredentialsProvider;
 import com.google.api.gax.core.FixedCredentialsProvider;
@@ -86,7 +86,7 @@ public class AutomotiveMapsApiAdapter {
     // to generate a short-lived auth token, uncomment the below two lines and replace "" with the token generated.
     // Comment out the credentials created for Prod authorization.
     // DO NOT include the token in public Git repo.
-    String accessToken = "ya29.c.b0Aaekm1I_q5tG8Ov_YoOGcnJyMEw83VUpAHvM4vpDw1STZ5SjRKF4-ShjTCJA5aytS5zN-1TPaWf1LejKmh8ReOzYRsOph87zhnc9X5NF960FadvQHKkPQcnMah-1MEoqiHaZQrXawYOLwRPjHmm1o1mvxWJKUCnVK_q_rFRH9nXB-UD-bEiIhGb4oKjUpmBEzajRcx5b1mq2pf0IRPCgeK9Lw1q_8M-icDuu_RjjPkjqqNlH9wbRCR_Wwh1EkxygmfZNv9zrbv0Kd97yT2KONEfzDAUk7fNtiEG2KVqoQ5uEhvIARGvbfzn-e4sp7oI7fPh2Zjn2ZcpsTx97hGB_x4LGtz46vG5VIQkPJs1frSm4scdcpElvlCCqHooc6Q52TEYMsJkCO3_FEpn8lE7f_NEkb_BEjG8O4vz50vJkxvcRMOYaI9NMTb-KN3-9EDOBqGIOplME5yEe5fC5fqJTTxEIfz0uhfGWLA_i1UYXHJkdObz9_eQXzDxM8TgL2C97sck6lOU_Krk2gN2wRIB1lBo53CW74G7Ku0SjsNTB3DkpY1RlJXlQQuMVoZuCyehQqzsaQwL591AuSxIiIO9pmp324xJFX-e2XSYpyzsk6wOkf1XRRF3qwZoRVRcq_owwS423r7Rvgrss8a38lrhXOVwhhVr8i-O-tOge8sBgbz999m3XuJ_neeXJb5Jgc-Bp3FJ18sUJrabce-O2OJ6u5Xkr9OkoJBzI8wq11Zs_jWt1lIscw-16Ig8Ig6WlqqWB37iyU81iay_in2B4S0kjh_RrQ9gI2Qhwr-xYR69RoOXy_5BlS1uj67wW7z8at3kVQ7tvxdQ4muX3QYjejmrOt3lBQW2xOwzsXMwWZb76-hjQBF1V3aut4rIQsczcRXmj0ki1opg5cgj-40g6ouiX9j7FWf_290oR8v00V0VBMRJQxxi-OaVuq6BrMpr7gFenVFue4hpbWgn7jRXkfrw5aMBXivnwqjdoM9XpxrV0QRaiM1sZuU93pY4";
+    String accessToken = "";
     Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
 
     //For Prod authorization: use application default credentials(ADC) with explicitly requested scope.

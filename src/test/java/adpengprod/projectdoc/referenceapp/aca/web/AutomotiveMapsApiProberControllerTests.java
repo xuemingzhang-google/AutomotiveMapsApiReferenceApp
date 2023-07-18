@@ -1,4 +1,4 @@
-package cloudcode.helloworld.web;
+package adpengprod.projectdoc.referenceapp.aca.web;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;

@@ -1,12 +1,12 @@
-package cloudcode.helloworld.web;
+package adpengprod.projectdoc.referenceapp.aca.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import static org.mockito.Mockito.when;
 
+import adpengprod.projectdoc.referenceapp.aca.adapters.AutomotiveMapsApiAdapter;
 import org.junit.Test;
-import cloudcode.helloworld.adapters.AutomotiveMapsApiAdapter;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

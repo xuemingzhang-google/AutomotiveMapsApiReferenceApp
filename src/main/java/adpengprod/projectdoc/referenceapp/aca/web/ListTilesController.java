@@ -1,6 +1,6 @@
-package cloudcode.helloworld.web;
+package adpengprod.projectdoc.referenceapp.aca.web;
 
-import cloudcode.helloworld.adapters.AutomotiveMapsApiAdapter;
+import adpengprod.projectdoc.referenceapp.aca.adapters.AutomotiveMapsApiAdapter;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
