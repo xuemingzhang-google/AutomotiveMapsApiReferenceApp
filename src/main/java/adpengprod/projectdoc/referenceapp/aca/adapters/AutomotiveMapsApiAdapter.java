@@ -104,13 +104,13 @@ public class AutomotiveMapsApiAdapter {
     // Use a larger page size to page through results faster, but
     // be careful not to use a page size so large that your client OOMs.
     ListTilesRequest request = ListTilesRequest.newBuilder().setParent(mapName)
-        .setPageSize(pageSize.isPresent()? pageSize.get() : LIST_TILES_DEFAULT_PAGE_SIZE)
+        .setPageSize(LIST_TILES_DEFAULT_PAGE_SIZE)
         .setGeoBounds(GeoBounds.newBuilder().setViewport(
             Viewport.newBuilder()
                 .setLow(LatLng.newBuilder().setLatitude(lowLat).setLongitude(lowLang))
                 .setHigh(LatLng.newBuilder().setLatitude(highLat).setLongitude(highLong)).build()
         ).build())
-        .setDataLayer(dataLayer.isPresent()?
+        .setDataLayer((dataLayer.isPresent() && !dataLayer.get().isEmpty())?
             DataLayer.valueOf(dataLayer.get())
             : DataLayer.HW_LIMITED_USE)
         .build();
