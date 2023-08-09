@@ -124,7 +124,7 @@ public class AutomotiveMapsApiAdapter {
       return TILE_NOT_PRESENT_MSG;
     }
 
-    return response.getTilesList().get(0).getName() + response.getNextPageToken();
+    return response.getTilesList().get(0).toString();
   }
 
 }
