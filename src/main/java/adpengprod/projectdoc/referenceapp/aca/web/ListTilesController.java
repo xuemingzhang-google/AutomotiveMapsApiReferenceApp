@@ -16,15 +16,16 @@ public class ListTilesController {
     this.automotiveMapsApiAdapter = automotiveMapsApiAdapter;
     results = "";
   }
+
   @GetMapping("/listTiles")
-  public String listTiles(
+  public String listTiles (
       @RequestParam(required = true) Double lowLat,
       @RequestParam(required = true) Double lowLng,
       @RequestParam(required = true) Double highLat,
       @RequestParam(required = true) Double highLng,
       @RequestParam(required = false) Optional<String> dataLayer,
       @RequestParam(required = false, defaultValue = "30") Optional<Integer> pageSize,
-      @RequestParam(required = false) Optional<String> nextPageToken) {
+      @RequestParam(required = false) Optional<String> nextPageToken) throws Exception {
     results += automotiveMapsApiAdapter.listTiles(
             lowLat,
             lowLng,
