@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+import com.googlecode.protobuf.format.JsonFormat;
 
 /**
  * Adapter class to call Google Automotive Cloud API's listMaps and listTiles APIs.
@@ -123,8 +124,8 @@ public class AutomotiveMapsApiAdapter {
     if (response == null || response.getTilesList() == null || response.getTilesList().isEmpty()) {
       return TILE_NOT_PRESENT_MSG;
     }
-
-    return response.getTilesList().get(0).toString();
+    JsonFormat jsonFormat = new JsonFormat();
+    return jsonFormat.printToString(response.getTilesList().get(0));
   }
 
 }
