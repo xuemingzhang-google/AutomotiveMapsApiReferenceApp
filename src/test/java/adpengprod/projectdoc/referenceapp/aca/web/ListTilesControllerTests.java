@@ -29,29 +29,29 @@ public class ListTilesControllerTests {
 
   @Test
   public void getTiles() throws Exception {
-    // when(automotiveMapsApiAdapter.listTiles(
-    //     anyDouble(),
-    //     anyDouble(),
-    //     anyDouble(),
-    //     anyDouble(),
-    //     any(),
-    //     any(),
-    //     any()))
-    //     .thenReturn("Hello, Mock!".getBytes());
-    //
-    // String response = mvc.perform(
-    //     MockMvcRequestBuilders
-    //         .get("/listTiles")
-    //         .param("lowLat", "1.0")
-    //
-    //         .param("lowLng", "1.0")
-    //         .param("highLat", "1.0")
-    //         .param("highLng", "1.0"))
-    //     .andExpect(status().isOk())
-    //     .andReturn().getResponse().getContentAsString();
-    //
-    // // Then
-    // assertThat(new String(response)).isEqualTo("Hello, Mock!");
+    when(automotiveMapsApiAdapter.listTiles(
+        anyDouble(),
+        anyDouble(),
+        anyDouble(),
+        anyDouble(),
+        any(),
+        any(),
+        any()))
+        .thenReturn("Hello, Mock!");
+
+    String response = mvc.perform(
+        MockMvcRequestBuilders
+            .get("/listTiles")
+            .param("lowLat", "1.0")
+
+            .param("lowLng", "1.0")
+            .param("highLat", "1.0")
+            .param("highLng", "1.0"))
+        .andExpect(status().isOk())
+        .andReturn().getResponse().getContentAsString();
+
+    // Then
+    assertThat(response).isEqualTo("Hello, Mock!");
   }
 
 }
