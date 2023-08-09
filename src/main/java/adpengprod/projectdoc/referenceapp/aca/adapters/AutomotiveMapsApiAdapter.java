@@ -97,19 +97,23 @@ public class AutomotiveMapsApiAdapter {
   }
 
   public String listTiles(double lowLat, double lowLang, double highLat, double highLong,
-      Optional<Integer> pageSize, Optional<String> nextPageToken) {
+      Optional<String> dataLayer, Optional<Integer> pageSize, Optional<String> nextPageToken) {
     String mapName = getLatestAvailableMap();
     // Request all tiles for a particular viewport and map version.
     // Tiles will be populated with data from the specified DataLayer.
     // Use a larger page size to page through results faster, but
     // be careful not to use a page size so large that your client OOMs.
     ListTilesRequest request = ListTilesRequest.newBuilder().setParent(mapName)
-        .setPageSize(LIST_TILES_DEFAULT_PAGE_SIZE)
+        .setPageSize(pageSize.isPresent()? pageSize.get() : LIST_TILES_DEFAULT_PAGE_SIZE)
         .setGeoBounds(GeoBounds.newBuilder().setViewport(
             Viewport.newBuilder()
                 .setLow(LatLng.newBuilder().setLatitude(lowLat).setLongitude(lowLang))
                 .setHigh(LatLng.newBuilder().setLatitude(highLat).setLongitude(highLong)).build()
-        ).build()).setDataLayer(DataLayer.HW_LIMITED_USE).build();
+        ).build())
+        .setDataLayer(dataLayer.isPresent()?
+            DataLayer.valueOf(dataLayer.get())
+            : DataLayer.HW_LIMITED_USE)
+        .build();
 
     if (nextPageToken.isPresent() && !nextPageToken.get().isEmpty()) {
       request = request.toBuilder().setPageToken(nextPageToken.get()).build();

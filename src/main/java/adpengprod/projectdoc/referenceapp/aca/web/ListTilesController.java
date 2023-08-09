@@ -19,16 +19,18 @@ public class ListTilesController {
   @GetMapping("/listTiles")
   public String listTiles(
       @RequestParam(required = true) Double lowLat,
-      @RequestParam(required = true) Double lowLang,
+      @RequestParam(required = true) Double lowLng,
       @RequestParam(required = true) Double highLat,
-      @RequestParam(required = true) Double highLong,
+      @RequestParam(required = true) Double highLng,
+      @RequestParam(required = false) Optional<String> dataLayer,
       @RequestParam(required = false, defaultValue = "30") Optional<Integer> pageSize,
       @RequestParam(required = false) Optional<String> nextPageToken) {
     results += automotiveMapsApiAdapter.listTiles(
             lowLat,
-            lowLang,
+            lowLng,
             highLat,
-            highLong,
+            highLng,
+            dataLayer,
             pageSize,
             nextPageToken);
     return results;

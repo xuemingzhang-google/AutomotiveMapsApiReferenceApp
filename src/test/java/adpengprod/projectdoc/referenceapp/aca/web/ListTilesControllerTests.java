@@ -29,7 +29,14 @@ public class ListTilesControllerTests {
 
   @Test
   public void getTiles() throws Exception {
-    when(automotiveMapsApiAdapter.listTiles(anyDouble(),anyDouble(),anyDouble(),anyDouble(),any(),any()))
+    when(automotiveMapsApiAdapter.listTiles(
+        anyDouble(),
+        anyDouble(),
+        anyDouble(),
+        anyDouble(),
+        any(),
+        any(),
+        any()))
         .thenReturn("Hello, Mock!");
 
     String response = mvc.perform(
