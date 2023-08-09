@@ -44,9 +44,9 @@ public class ListTilesControllerTests {
             .get("/listTiles")
             .param("lowLat", "1.0")
 
-            .param("lowLang", "1.0")
+            .param("lowLng", "1.0")
             .param("highLat", "1.0")
-            .param("highLong", "1.0"))
+            .param("highLng", "1.0"))
         .andExpect(status().isOk())
         .andReturn().getResponse().getContentAsString();
 
