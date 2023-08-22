@@ -125,8 +125,10 @@ public class AutomotiveMapsApiAdapter {
       return TILE_NOT_PRESENT_MSG;
     }
 
-    JsonFormat jsonFormat = new JsonFormat();
-    return jsonFormat.printToString(response.getTilesList().get(0));
+    return response.getTilesList().get(0).getName() + response.getTilesList().get(0).getSegments(0).toString();
+    // JsonFormat jsonFormat = new JsonFormat();
+    //
+    // return jsonFormat.printToString(response.getTilesList().get(0));
   }
 
 }
