@@ -37,7 +37,7 @@ public class AutomotiveMapsApiAdapter {
 
   private static final String TILE_NOT_PRESENT_MSG = "No tile available.";
 
-  private static final int LIST_TILES_DEFAULT_PAGE_SIZE = 30;
+  private static final int LIST_TILES_DEFAULT_PAGE_SIZE = 1;
 
   private AutomotiveMapsClient automotiveMapsClient;
   public AutomotiveMapsApiAdapter() throws Exception {
@@ -124,6 +124,7 @@ public class AutomotiveMapsApiAdapter {
     if (response == null || response.getTilesList() == null || response.getTilesList().isEmpty()) {
       return TILE_NOT_PRESENT_MSG;
     }
+
     JsonFormat jsonFormat = new JsonFormat();
     return jsonFormat.printToString(response.getTilesList().get(0));
   }
