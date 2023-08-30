@@ -3,7 +3,6 @@ package adpengprod.projectdoc.referenceapp.aca.adapters;
 import com.google.api.gax.core.CredentialsProvider;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.Credentials;
-import com.google.auth.oauth2.AccessToken;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.common.base.Strings;
 import com.google.geo.type.Viewport;
@@ -22,8 +21,9 @@ import com.google.type.LatLng;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
-import com.googlecode.protobuf.format.JsonFormat;
+import java.util.List;
 
 /**
  * Adapter class to call Google Automotive Cloud API's listMaps and listTiles APIs.
@@ -37,7 +37,7 @@ public class AutomotiveMapsApiAdapter {
 
   private static final String TILE_NOT_PRESENT_MSG = "No tile available.";
 
-  private static final int LIST_TILES_DEFAULT_PAGE_SIZE = 1;
+  private static final int LIST_TILES_DEFAULT_PAGE_SIZE = 30;
 
   private AutomotiveMapsClient automotiveMapsClient;
   public AutomotiveMapsApiAdapter() throws Exception {
@@ -125,10 +125,13 @@ public class AutomotiveMapsApiAdapter {
       return TILE_NOT_PRESENT_MSG;
     }
 
-    return "name segments";
-    // JsonFormat jsonFormat = new JsonFormat();
-    //
-    // return jsonFormat.printToString(response.getTilesList().get(0));
+    Tile tile = response.getTilesList().get(0);
+    List<String> fildNames = tile.getAllFields().keySet()
+        .stream()
+        .map(fieldDescriptor -> fieldDescriptor.getName())
+        .collect(Collectors.toList());
+
+    return String.join(",", fildNames);
   }
 
 }
