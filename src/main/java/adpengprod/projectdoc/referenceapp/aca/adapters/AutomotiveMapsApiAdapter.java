@@ -24,6 +24,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import com.google.auth.oauth2.AccessToken;
 
 /**
  * Adapter class to call Google Automotive Cloud API's listMaps and listTiles APIs.
@@ -77,6 +78,7 @@ public class AutomotiveMapsApiAdapter {
     AutomotiveMapsSettings automotiveMapsSettings =
         AutomotiveMapsSettings.newBuilder()
             .setCredentialsProvider(credentialsProvider)
+            .setEndpoint("preprod-automotivemaps.sandbox.googleapis.com:443")
             .build();
 
     automotiveMapsClient = AutomotiveMapsClient.create(
@@ -87,11 +89,11 @@ public class AutomotiveMapsApiAdapter {
     // to generate a short-lived auth token, uncomment the below two lines and replace "" with the token generated.
     // Comment out the credentials created for Prod authorization.
     // DO NOT include the token in public Git repo.
-    // String accessToken = "";
-    // Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
+    String accessToken = "ya29.c.b0Aaekm1L5tI53Wr1JPLWF0Rg42eH-CSG1LsqGWIhYM0lQDiT3Mpj_oVJa1BUOZtAFW30mBDBNta6ZAaANNCPC02072hTMyUHjFBcX9LpG1u5caAmCtKoWYExaiYogGOIIwfXARhLBONtKuWoaInHEGC1jsN-GDjBnM498T8gh6_K19Jk6GIACAXUAnVUWzU44pQSgQqzR0qVxCGK72BxF7ZmVsFRpkZCKn8hvy3g0LpqXyMFUCxuAY7E8mN1HhT4x-xjKXOkDAkwfARAp9l7Ezl36O1LoAZv3AUPA6OQSgrGRihwsoEYPp2FhwHtlm4w7e3duNm_wcj8hhCOOiSVIOWgu8-vOzd7pSfuzXjHW9X6JmjrZEHNwLKE1V7H_uyQh4su0YcGg2STA8v-uxo7jpEQo5vIg7o5e2_fAzYOnNdPVP6uFlPoxAy3b4ZSJuFdYvHOwkLHWjJ_n6NNTwmq7eKnMg0ftVP58UrNo7rf_ZCmxxwU8oD8ZQyDbqgZp3NCXgnmKmTn8bWakiUJkDCOgtk2FJTbejN0Jwg4KrfH-cjRbH25_x53zOxwZQipRPotBYUoN588CS9BcbR9m3U0dY6xpxyJImre16Mp05O-BikYoWWyFvJzh5MBze4Ba-SW6Mt7ayedb9ap9yb875Vn1-83dyykIOq-vqk2JZfse-a6RsXa3l7jxa0w6yZ-hzXwVMhi7F3ro35j6qww5ovIrgVSnzcrcYBlfjQ4gs0_y4Z4sh0YmOssWqb1SIY-6Xy7oleglyy00U5v1aQzq7btjMbpVkojeXZJ4tZs29z-wuJsUb_5qQr2_bx3kwS2aQnz_1qum7snW3yz3qtv6iywBQSk5fhqUROguXJdYt-z9tiy--FF2FrdcQYYWe0i0p3F4IX4qgaeO8e5WuIFkuzb14W_58R_UM-5kZxzlBrXcQiSR3xe9W1RY4w9jBl67t99IwtJ-4dugV66uobezaod1U3FaUxQwMf0_rVOgZqYrpSyzBX2wY3xYiXJ";
+    Credentials credentials = GoogleCredentials.create(new AccessToken(accessToken, null));
 
     //For Prod authorization: use application default credentials(ADC) with explicitly requested scope.
-    Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped(ACA_SCOPE);
+    //Credentials credentials = GoogleCredentials.getApplicationDefault().createScoped(ACA_SCOPE);
 
     return credentials;
 
